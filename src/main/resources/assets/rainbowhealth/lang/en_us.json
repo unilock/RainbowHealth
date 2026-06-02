@@ -1,0 +1,5 @@
+{
+  "rainbowhealth.configuration.enable_bar": "Enable bar",
+  "rainbowhealth.configuration.enable_tetx": "Enable text",
+  "rainbowhealth.configuration.min_max_health": "Minimum MAX_HEALTH to render"
+}
