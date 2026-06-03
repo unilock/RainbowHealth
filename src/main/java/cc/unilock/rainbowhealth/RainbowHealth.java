@@ -50,8 +50,9 @@ public class RainbowHealth {
 		event.registerAbove(VanillaGuiLayers.PLAYER_HEALTH, ResourceLocation.fromNamespaceAndPath(RainbowHealth.MOD_ID, "bar"), (guiGraphics, deltaTracker) -> {
 			if (RainbowConfig.CONFIG.enableBar.getAsBoolean()) {
 				var client = Minecraft.getInstance();
-				var player = client.getCameraEntity() instanceof Player p ? p : null;
+				if (client.gameMode == null || !client.gameMode.canHurtPlayer()) return;
 
+				var player = client.getCameraEntity() instanceof Player p ? p : null;
 				if (player != null) {
 					if (getMaxHealth(player) > RainbowConfig.CONFIG.minMaxHealth.get()) {
 						int x = guiGraphics.guiWidth() / 2 - 91;
@@ -117,8 +118,9 @@ public class RainbowHealth {
 		event.registerAbove(VanillaGuiLayers.ARMOR_LEVEL, ResourceLocation.fromNamespaceAndPath(RainbowHealth.MOD_ID, "text"), (guiGraphics, deltaTracker) -> {
 			if (RainbowConfig.CONFIG.enableText.getAsBoolean()) {
 				var client = Minecraft.getInstance();
-				var player = client.getCameraEntity() instanceof Player p ? p : null;
+				if (client.gameMode == null || !client.gameMode.canHurtPlayer()) return;
 
+				var player = client.getCameraEntity() instanceof Player p ? p : null;
 				if (player != null) {
 					int x = guiGraphics.guiWidth() / 2 - 91;
 					int y = guiGraphics.guiHeight() - client.gui.leftHeight;
