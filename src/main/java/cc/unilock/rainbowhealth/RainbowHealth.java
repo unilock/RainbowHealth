@@ -62,6 +62,7 @@ public class RainbowHealth {
 
 						boolean poison = player.hasEffect(MobEffects.POISON);
 						boolean wither = player.hasEffect(MobEffects.WITHER);
+						boolean frozen = player.isFullyFrozen();
 
 						int bars = getHealth(player) * 30 / getMaxHealth(player);
 
@@ -90,6 +91,9 @@ public class RainbowHealth {
 							}
 							if (wither) {
 								v = height * 4;
+							}
+							if (frozen) {
+								v = height * 5;
 							}
 							if (i >= bars) {
 								v = height;
