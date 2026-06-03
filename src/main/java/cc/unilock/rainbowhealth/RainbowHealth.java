@@ -58,7 +58,7 @@ public class RainbowHealth {
 						int y = guiGraphics.guiHeight() - client.gui.leftHeight;
 
 						boolean regeneration = player.hasEffect(MobEffects.REGENERATION);
-						int rOffset = regeneration ? Math.abs((player.getEffect(MobEffects.REGENERATION).getDuration() % 30) - 30) : 0;
+						int rOffset = regeneration ? Math.abs((player.getEffect(MobEffects.REGENERATION).getDuration() % 40) - 40) : 0; // TODO: I don't like this math
 
 						boolean poison = player.hasEffect(MobEffects.POISON);
 						boolean wither = player.hasEffect(MobEffects.WITHER);
@@ -107,7 +107,11 @@ public class RainbowHealth {
 					int x = guiGraphics.guiWidth() / 2 - 91;
 					int y = guiGraphics.guiHeight() - client.gui.leftHeight;
 
-					guiGraphics.drawString(client.font, String.format("HP: %d/%d", getHealth(player), getMaxHealth(player)), x, y, 0xffffff);
+					if (RainbowConfig.CONFIG.divideByTwo.getAsBoolean()) {
+						guiGraphics.drawString(client.font, String.format("Health: %d/%d", getHealth(player)/2, getMaxHealth(player)/2), x, y, 0xFFFFFF);
+					} else {
+						guiGraphics.drawString(client.font, String.format("HP: %d/%d", getHealth(player), getMaxHealth(player)), x, y, 0xFFFFFF);
+					}
 
 					client.gui.leftHeight += client.font.lineHeight + 1;
 				}

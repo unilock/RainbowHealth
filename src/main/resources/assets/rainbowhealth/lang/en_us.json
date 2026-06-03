@@ -1,5 +1,6 @@
 {
   "rainbowhealth.configuration.enable_bar": "Enable bar",
-  "rainbowhealth.configuration.enable_tetx": "Enable text",
+  "rainbowhealth.configuration.enable_text": "Enable text",
+  "rainbowhealth.configuration.divide_by_two": "Divide health text by two",
   "rainbowhealth.configuration.min_max_health": "Minimum MAX_HEALTH to render bar"
 }

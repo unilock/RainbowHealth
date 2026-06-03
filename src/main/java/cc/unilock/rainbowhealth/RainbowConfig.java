@@ -16,11 +16,13 @@ public class RainbowConfig {
 
 	public final ModConfigSpec.BooleanValue enableBar;
 	public final ModConfigSpec.BooleanValue enableText;
+	public final ModConfigSpec.BooleanValue divideByTwo;
 	public final ModConfigSpec.ConfigValue<Integer> minMaxHealth;
 
 	private RainbowConfig(ModConfigSpec.Builder builder) {
 		this.enableBar = builder.define("enable_bar", true);
 		this.enableText = builder.define("enable_text", true);
+		this.divideByTwo = builder.define("divide_by_two", false);
 		this.minMaxHealth = builder.define("min_max_health", 40);
 	}
 }
