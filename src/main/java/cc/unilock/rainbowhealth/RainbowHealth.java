@@ -57,6 +57,8 @@ public class RainbowHealth {
 						int x = guiGraphics.guiWidth() / 2 - 91;
 						int y = guiGraphics.guiHeight() - client.gui.leftHeight;
 
+						boolean blinking = player.hurtTime > 0 && player.hurtTime / 3 % 2 == 1;
+
 						boolean regeneration = player.hasEffect(MobEffects.REGENERATION);
 						int rOffset = regeneration ? Math.abs((player.getEffect(MobEffects.REGENERATION).getDuration() % 40) - 40) - 5 : 0; // TODO: I don't like this math
 
@@ -97,9 +99,13 @@ public class RainbowHealth {
 							}
 							if (i >= bars) {
 								v = height;
+
+								if (blinking) {
+									v = height * 2;
+								}
 							}
 
-							guiGraphics.blit(TEXTURE, x + u, y + offset, u, v, width, height, 91, 45);
+							guiGraphics.blit(TEXTURE, x + u, y + offset, u, v, width, height, 91, 54);
 						}
 
 						client.gui.leftHeight += height + 1;
