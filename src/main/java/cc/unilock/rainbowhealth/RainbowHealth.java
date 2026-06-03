@@ -80,16 +80,16 @@ public class RainbowHealth {
 							}
 
 							if (poison) {
-								v = height * 4;
+								v = height * 3;
 							}
 							if (wither) {
-								v = height * 5;
+								v = height * 4;
 							}
 							if (i >= bars) {
 								v = height;
 							}
 
-							guiGraphics.blit(TEXTURE, x + u, y + offset, u, v, width, height, 91, 54);
+							guiGraphics.blit(TEXTURE, x + u, y + offset, u, v, width, height, 91, 45);
 						}
 
 						client.gui.leftHeight += height + 1;
