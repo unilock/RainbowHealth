@@ -58,7 +58,7 @@ public class RainbowHealth {
 						int y = guiGraphics.guiHeight() - client.gui.leftHeight;
 
 						boolean regeneration = player.hasEffect(MobEffects.REGENERATION);
-						int rOffset = regeneration ? Math.abs((player.getEffect(MobEffects.REGENERATION).getDuration() % 40) - 40) : 0; // TODO: I don't like this math
+						int rOffset = regeneration ? Math.abs((player.getEffect(MobEffects.REGENERATION).getDuration() % 40) - 40) - 5 : 0; // TODO: I don't like this math
 
 						boolean poison = player.hasEffect(MobEffects.POISON);
 						boolean wither = player.hasEffect(MobEffects.WITHER);
@@ -71,11 +71,17 @@ public class RainbowHealth {
 
 							int offset = 0;
 							if (regeneration) {
+								if (rOffset == i - 2) {
+									offset = -1;
+								}
 								if (rOffset == i - 1) {
-									offset = 1;
+									offset = -2;
 								}
 								if (rOffset == i + 1) {
-									offset = -1;
+									offset = 2;
+								}
+								if (rOffset == i + 2) {
+									offset = 1;
 								}
 							}
 
