@@ -103,13 +103,12 @@ public class RainbowHealth {
 							}
 							if (i >= bars) {
 								v = height;
-
-								if (blinking) {
-									v = height * 2;
-								}
 							}
 
 							guiGraphics.blit(TEXTURE, x + u, y + offset, u, v, halfWidth, height, 91, 54);
+							if (blinking) {
+								guiGraphics.blit(TEXTURE, x + u, y + offset, u, height * 2, halfWidth, height, 91, 54);
+							}
 						}
 
 						client.gui.leftHeight += height + 1;
