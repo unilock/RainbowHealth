@@ -45,6 +45,7 @@ public class RainbowHealth {
 
 	private void registerGuiLayers(RegisterGuiLayersEvent event) {
 		final int width = 4;
+		final int halfWidth = width / 2;
 		final int height = 9;
 
 		event.registerAbove(VanillaGuiLayers.PLAYER_HEALTH, ResourceLocation.fromNamespaceAndPath(RainbowHealth.MOD_ID, "bar"), (guiGraphics, deltaTracker) -> {
@@ -55,8 +56,8 @@ public class RainbowHealth {
 				var player = client.getCameraEntity() instanceof Player p ? p : null;
 				if (player != null) {
 					if (getMaxHealth(player) > RainbowConfig.CONFIG.minMaxHealth.get()) {
-						int x = guiGraphics.guiWidth() / 2 - 91;
-						int y = guiGraphics.guiHeight() - client.gui.leftHeight;
+						final int x = guiGraphics.guiWidth() / 2 - 91;
+						final int y = guiGraphics.guiHeight() - client.gui.leftHeight;
 
 						boolean blinking = player.hurtTime > 0 && player.hurtTime / 3 % 2 == 1;
 
@@ -67,24 +68,26 @@ public class RainbowHealth {
 						boolean wither = player.hasEffect(MobEffects.WITHER);
 						boolean frozen = player.isFullyFrozen();
 
-						int bars = getHealth(player) * 30 / getMaxHealth(player);
+						int bars = getHealth(player) * 60 / getMaxHealth(player);
 
-						for (int i = 0; i < 30; i++) {
-							int u = i * (width - 1);
+						for (int i = 0; i < 60; i++) {
+							int j = i / 2;
+
+							int u = j * (width - 1) + (i % 2 * halfWidth);
 							int v = 0;
 
 							int offset = 0;
 							if (regeneration) {
-								if (rOffset == i - 2) {
+								if (rOffset == j - 2) {
 									offset = -1;
 								}
-								if (rOffset == i - 1) {
+								if (rOffset == j - 1) {
 									offset = -2;
 								}
-								if (rOffset == i + 1) {
+								if (rOffset == j + 1) {
 									offset = 2;
 								}
-								if (rOffset == i + 2) {
+								if (rOffset == j + 2) {
 									offset = 1;
 								}
 							}
@@ -106,7 +109,7 @@ public class RainbowHealth {
 								}
 							}
 
-							guiGraphics.blit(TEXTURE, x + u, y + offset, u, v, width, height, 91, 54);
+							guiGraphics.blit(TEXTURE, x + u, y + offset, u, v, halfWidth, height, 91, 54);
 						}
 
 						client.gui.leftHeight += height + 1;
