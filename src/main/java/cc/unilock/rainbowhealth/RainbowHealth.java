@@ -48,7 +48,7 @@ public class RainbowHealth {
 		final int halfWidth = width / 2;
 		final int height = 9;
 
-		event.registerAbove(VanillaGuiLayers.PLAYER_HEALTH, ResourceLocation.fromNamespaceAndPath(RainbowHealth.MOD_ID, "bar"), (guiGraphics, deltaTracker) -> {
+		event.registerBelow(VanillaGuiLayers.PLAYER_HEALTH, ResourceLocation.fromNamespaceAndPath(RainbowHealth.MOD_ID, "bar"), (guiGraphics, deltaTracker) -> {
 			if (RainbowConfig.CONFIG.enableBar.getAsBoolean()) {
 				var client = Minecraft.getInstance();
 				if (client.gameMode == null || !client.gameMode.canHurtPlayer()) return;
